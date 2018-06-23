@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "846583804374",
+    "firebase_url": "https://locationtest-3b730.firebaseio.com",
+    "project_id": "locationtest-3b730",
+    "storage_bucket": "locationtest-3b730.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846583804374:android:1b1890bb5fa3d581",
+        "android_client_info": {
+          "package_name": "com.locationtest.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846583804374-aufhqfp73hq37r0pekqqa5cfakvpejsr.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "846583804374-aufhqfp73hq37r0pekqqa5cfakvpejsr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5w6JRT98R0VxGhBFRUymrr86SJJPVchE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
