@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() {
   runApp(new MyApp());
@@ -25,6 +26,8 @@ class _MyAppState extends State<MyApp> {
   var url;
   var request;
   var value;
+  var city;
+  Map parsedMap;
   String error;
 
   bool currentWidget = true;
@@ -45,10 +48,8 @@ class _MyAppState extends State<MyApp> {
             _lat = _currentLocation["latitude"];
             url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${_lat},${_lon}&location_type=ROOFTOP&result_type=street_address&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
             request = http.get(url);
-            request.then((val) {
-            print(val);
-            value = val;
-            });
+            parsedMap = JSON.decode(request);
+            city = parsedMap["results"];
           });
         });
   }
@@ -109,7 +110,7 @@ class _MyAppState extends State<MyApp> {
 
     widgets.add(new Center(
         child: new Text(_currentLocation != null
-            ? 'City: $value\n'
+            ? 'City: $city\n'
             : 'Error: $error\n')));
     
     return new MaterialApp(
