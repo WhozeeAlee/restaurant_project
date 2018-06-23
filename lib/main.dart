@@ -79,7 +79,7 @@ class _MyAppState extends State<MyApp> {
     } else {
       widgets = [
         new Image.network(
-            "https://maps.googleapis.com/maps/api/staticmap?center=${_currentLocation["latitude"]},${_currentLocation["longitude"]}&zoom=18&size=640x400&key=AIzaSyDLSqSmNlMoUPqUdngcFwrNFM0bLCK-mOM")
+            "https://maps.googleapis.com/maps/api/staticmap?center=${_currentLocation["latitude"]},${_currentLocation["longitude"]}&zoom=18&size=640x400&key=AIzaSyBRS8BL9DGvYR5QFTBjZRDaBFSaI1quGUw")
       ];
     }
 
