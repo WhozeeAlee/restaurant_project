@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(new MyApp());
@@ -19,6 +20,11 @@ class _MyAppState extends State<MyApp> {
   StreamSubscription<Map<String, double>> _locationSubscription;
 
   Location _location = new Location();
+  double _lon;
+  double _lat;
+  var url;
+  var request;
+  var value;
   String error;
 
   bool currentWidget = true;
@@ -35,6 +41,14 @@ class _MyAppState extends State<MyApp> {
         _location.onLocationChanged.listen((Map<String,double> result) {
           setState(() {
             _currentLocation = result;
+            _lon = _currentLocation["longitude"];
+            _lat = _currentLocation["latitude"];
+            url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${_lat},${_lon}&location_type=ROOFTOP&result_type=street_address&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
+            request = http.get(url);
+            request.then((val) {
+            print(val);
+            value = val;
+            });
           });
         });
   }
@@ -79,9 +93,8 @@ class _MyAppState extends State<MyApp> {
     } else {
       widgets = [
         new Image.network(
-            "https://maps.googleapis.com/maps/api/staticmap?center=${_currentLocation["latitude"]},${_currentLocation["longitude"]}&zoom=18&size=640x400&key=AIzaSyBRS8BL9DGvYR5QFTBjZRDaBFSaI1quGUw")
+            "https://maps.googleapis.com/maps/api/staticmap?center=${_lat},${_lon}&zoom=18&size=640x400&key=AIzaSyBRS8BL9DGvYR5QFTBjZRDaBFSaI1quGUw")
       ];
-        new Text('hello');
     }
 
     widgets.add(new Center(
@@ -94,6 +107,11 @@ class _MyAppState extends State<MyApp> {
             ? 'Continuous location: $_currentLocation\n'
             : 'Error: $error\n')));
 
+    widgets.add(new Center(
+        child: new Text(_currentLocation != null
+            ? 'City: $value\n'
+            : 'Error: $error\n')));
+    
     return new MaterialApp(
         home: new Scaffold(
             appBar: new AppBar(
