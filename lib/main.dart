@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
 
   }
 
-fetchPost(double _lat, double _lon) async {
+fetchCity(double _lat, double _lon) async {
   url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${_lat},${_lon}&location_type=ROOFTOP&result_type=street_address&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
   print(url);
   final response = await http.get(url);
@@ -81,23 +81,37 @@ fetchPost(double _lat, double _lon) async {
   return value;
 }
 
+fetchRestaurants(double _lat, double _lon) async {
+  url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${_lat},${_lon}&radius=500&type=restaurant&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
+  print(url);
+  final response = await http.get(url);
+
+  print(response.body);
+  Map<String, dynamic> result = json.decode(response.body.toString());
+  result['results'].forEach((rest) => print(rest['name']));
+  value = result['results'][0]['name'];
+
+  return value;
+}
 
   @override
   Widget build(BuildContext context) {
     List<Widget> widgets;
 
-      widgets = new List();
+    widgets = new List();
+    fetchRestaurants(_lat, _lon);
 
     widgets.add(new Center(
         child: new Text(_startLocation != null
             ? 'Start location: $_startLocation\n'
             : 'Error: $error\n')));
-    fetchPost(_lat, _lon);
     widgets.add(new Center(
         child: new Text(_currentLocation != null
             ? 'City: $value\n'
             : 'Error: $error\n')));
     
+    
+
     return new MaterialApp(
         home: new Scaffold(
             appBar: new AppBar(
