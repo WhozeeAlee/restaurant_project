@@ -68,11 +68,6 @@ class _MyAppState extends State<MyApp> {
       location = null;
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    //if (!mounted) return;
-
     setState(() {
         _startLocation = location;
     });
@@ -95,6 +90,13 @@ Future<http.Response> fetchPost(double _lat, double _lon) async {
   Widget build(BuildContext context) {
     List<Widget> widgets;
 
+      widgets = new List();
+
+
+    widgets.add(new Center(
+        child: new Text(_startLocation != null
+            ? 'Start location: $_startLocation\n'
+            : 'Error: $error\n')));
 final request1 = fetchPost(_lat, _lon);
     widgets.add(new Center(
         child: new Text(_currentLocation != null
@@ -104,7 +106,7 @@ final request1 = fetchPost(_lat, _lon);
     return new MaterialApp(
         home: new Scaffold(
             appBar: new AppBar(
-              title: new Text('Location plugin example app'),
+              title: new Text('Chris is gay'),
             ),
             body: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
