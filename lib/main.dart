@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
-import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() {
   runApp(new MyApp());
@@ -84,7 +84,8 @@ Future<http.Response> fetchPost() async {
       await http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=33.867092,-118.0642467&location_type=ROOFTOP&result_type=street_address&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c');
 
   print(response.body);
-
+  Map<String, dynamic> result = json.decode(response.body.toString());
+  value = result['results'][0]['address_components'][2]['long_name'];
   return response;
 }
 
@@ -111,7 +112,9 @@ Future<http.Response> fetchPost() async {
         child: new Text(_currentLocation != null
             ? 'Continuous location: $_currentLocation\n'
             : 'Error: $error\n')));
-final request1 = fetchPost();
+    final response = fetchPost();
+    // List result = json.decode(response.body.toString());
+    // value = result[1];
     widgets.add(new Center(
         child: new Text(_currentLocation != null
             ? 'City: $value\n'
