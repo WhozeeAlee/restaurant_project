@@ -79,9 +79,10 @@ class _MyAppState extends State<MyApp> {
 
   }
 
-Future<http.Response> fetchPost() async {
-  final response =
-      await http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=33.867092,-118.0642467&location_type=ROOFTOP&result_type=street_address&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c');
+Future<http.Response> fetchPost(double _lat, double _lon) async {
+  url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${_lat},${_lon}&location_type=ROOFTOP&result_type=street_address&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
+  print(url);
+  final response = await http.get(url);
 
   print(response.body);
 
@@ -111,7 +112,7 @@ Future<http.Response> fetchPost() async {
         child: new Text(_currentLocation != null
             ? 'Continuous location: $_currentLocation\n'
             : 'Error: $error\n')));
-final request1 = fetchPost();
+final request1 = fetchPost(_lat, _lon);
     widgets.add(new Center(
         child: new Text(_currentLocation != null
             ? 'City: $value\n'
