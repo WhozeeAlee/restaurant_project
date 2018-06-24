@@ -95,31 +95,7 @@ Future<http.Response> fetchPost(double _lat, double _lon) async {
   Widget build(BuildContext context) {
     List<Widget> widgets;
 
-    if (_currentLocation == null) {
-      widgets = new List();
-    } else {
-      widgets = [
-        new Image.network(
-            "https://maps.googleapis.com/maps/api/staticmap?center=${_lat},${_lon}&zoom=18&size=640x400&key=AIzaSyBRS8BL9DGvYR5QFTBjZRDaBFSaI1quGUw")
-      ];
-    }
-
-    widgets.add(new Center(
-        child: new Text(_startLocation != null
-            ? 'Start location: $_startLocation\n'
-            : 'Error: $error\n')));
-
-    widgets.add(new Center(
-        child: new Text(_currentLocation != null
-            ? 'Continuous location: $_currentLocation\n'
-            : 'Error: $error\n')));
-<<<<<<< HEAD
 final request1 = fetchPost(_lat, _lon);
-=======
-    final response = fetchPost();
-    // List result = json.decode(response.body.toString());
-    // value = result[1];
->>>>>>> 12923c4561a1ed8f3e0dd07259c75e3f4b5e5885
     widgets.add(new Center(
         child: new Text(_currentLocation != null
             ? 'City: $value\n'
