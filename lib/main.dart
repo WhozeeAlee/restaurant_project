@@ -5,6 +5,8 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:location_test/Restaurant.dart';
+
 void main() {
   runApp(new MyApp());
 }
@@ -88,7 +90,8 @@ fetchRestaurants(double _lat, double _lon) async {
 
   print(response.body);
   Map<String, dynamic> result = json.decode(response.body.toString());
-  result['results'].forEach((rest) => print(rest['name']));
+  List<Restaurant> restaurants;
+  result['results'].forEach((rest) => restaurants.add(Restaurant.));
   value = result['results'][0]['name'];
 
   return value;
