@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
-import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() {
   runApp(new MyApp());
@@ -85,7 +85,8 @@ Future<http.Response> fetchPost(double _lat, double _lon) async {
   final response = await http.get(url);
 
   print(response.body);
-
+  Map<String, dynamic> result = json.decode(response.body.toString());
+  value = result['results'][0]['address_components'][2]['long_name'];
   return response;
 }
 
@@ -112,7 +113,13 @@ Future<http.Response> fetchPost(double _lat, double _lon) async {
         child: new Text(_currentLocation != null
             ? 'Continuous location: $_currentLocation\n'
             : 'Error: $error\n')));
+<<<<<<< HEAD
 final request1 = fetchPost(_lat, _lon);
+=======
+    final response = fetchPost();
+    // List result = json.decode(response.body.toString());
+    // value = result[1];
+>>>>>>> 12923c4561a1ed8f3e0dd07259c75e3f4b5e5885
     widgets.add(new Center(
         child: new Text(_currentLocation != null
             ? 'City: $value\n'
