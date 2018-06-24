@@ -21,13 +21,9 @@ class _MyAppState extends State<MyApp> {
   StreamSubscription<Map<String, double>> _locationSubscription;
 
   Location _location = new Location();
-  double _lon;
-  double _lat;
-  var url;
-  var request;
-  var response;
-  String value;
-  String error;
+  double _lon, _lat;
+  var url, request, response;
+  String value, error;
 
   bool currentWidget = true;
 
@@ -74,7 +70,7 @@ class _MyAppState extends State<MyApp> {
 
   }
 
-Future<http.Response> fetchPost(double _lat, double _lon) async {
+fetchPost(double _lat, double _lon) async {
   url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${_lat},${_lon}&location_type=ROOFTOP&result_type=street_address&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
   print(url);
   final response = await http.get(url);
@@ -82,7 +78,7 @@ Future<http.Response> fetchPost(double _lat, double _lon) async {
   print(response.body);
   Map<String, dynamic> result = json.decode(response.body.toString());
   value = result['results'][0]['address_components'][2]['long_name'];
-  return response;
+  return value;
 }
 
 
@@ -92,12 +88,11 @@ Future<http.Response> fetchPost(double _lat, double _lon) async {
 
       widgets = new List();
 
-
     widgets.add(new Center(
         child: new Text(_startLocation != null
             ? 'Start location: $_startLocation\n'
             : 'Error: $error\n')));
-final request1 = fetchPost(_lat, _lon);
+    fetchPost(_lat, _lon);
     widgets.add(new Center(
         child: new Text(_currentLocation != null
             ? 'City: $value\n'
@@ -106,7 +101,7 @@ final request1 = fetchPost(_lat, _lon);
     return new MaterialApp(
         home: new Scaffold(
             appBar: new AppBar(
-              title: new Text('Chris is gay'),
+              title: new Text('lmao'),
             ),
             body: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
