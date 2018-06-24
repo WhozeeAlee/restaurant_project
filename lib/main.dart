@@ -1,7 +1,8 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
+import 'dart:convert';
+import 'dart:async';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -24,7 +25,8 @@ class _MyAppState extends State<MyApp> {
   double _lat;
   var url;
   var request;
-  var value;
+  var response;
+  String value;
   String error;
 
   bool currentWidget = true;
@@ -43,12 +45,6 @@ class _MyAppState extends State<MyApp> {
             _currentLocation = result;
             _lon = _currentLocation["longitude"];
             _lat = _currentLocation["latitude"];
-            url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${_lat},${_lon}&location_type=ROOFTOP&result_type=street_address&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
-            request = http.get(url);
-            request.then((val) {
-            print(val);
-            value = val;
-            });
           });
         });
   }
@@ -83,10 +79,19 @@ class _MyAppState extends State<MyApp> {
 
   }
 
+Future<http.Response> fetchPost() async {
+  final response =
+      await http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=33.867092,-118.0642467&location_type=ROOFTOP&result_type=street_address&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c');
+
+  print(response.body);
+
+  return response;
+}
+
+
   @override
   Widget build(BuildContext context) {
     List<Widget> widgets;
-
 
     if (_currentLocation == null) {
       widgets = new List();
@@ -106,7 +111,7 @@ class _MyAppState extends State<MyApp> {
         child: new Text(_currentLocation != null
             ? 'Continuous location: $_currentLocation\n'
             : 'Error: $error\n')));
-
+final request1 = fetchPost();
     widgets.add(new Center(
         child: new Text(_currentLocation != null
             ? 'City: $value\n'
