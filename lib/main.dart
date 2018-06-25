@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   Map<String, double> _startLocation;
   Map<String, double> _currentLocation;
 
-  StreamSubscription<Map<String, double>> _locationSubscription;
+  //StreamSubscription<Map<String, double>> _locationSubscription;
 
   Location _location = new Location();
   double _lon, _lat;
@@ -37,15 +37,15 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     initPlatformState();
-
-    _locationSubscription =
-        _location.onLocationChanged.listen((Map<String,double> result) {
-          setState(() {
-            _currentLocation = result;
-            _lon = _currentLocation["longitude"];
-            _lat = _currentLocation["latitude"];
-          });
-        });
+    
+    // _locationSubscription =
+    //     _location.onLocationChanged.listen((Map<String,double> result) {
+    //       setState(() {
+    //         _currentLocation = result;
+    //         _lon = _currentLocation["longitude"];
+    //         _lat = _currentLocation["latitude"];
+    //       });
+    //     });
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -69,6 +69,8 @@ class _MyAppState extends State<MyApp> {
 
     setState(() {
         _startLocation = location;
+        _lon = location['longitude'];
+        _lat = location['latitude'];
     });
 
   }
