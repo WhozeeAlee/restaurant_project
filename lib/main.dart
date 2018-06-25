@@ -84,6 +84,7 @@ fetchCity(double _lat, double _lon) async {
   return value;
 }
 
+
 fetchRestaurants(double _lat, double _lon) async {
   url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${_lat},${_lon}&radius=500&type=restaurant&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
   print(url);
@@ -92,7 +93,7 @@ fetchRestaurants(double _lat, double _lon) async {
   print(response.body);
   Map<String, dynamic> result = json.decode(response.body.toString());
   Restaurant r = new Restaurant.fromJson(result['results'][0]);
-  result['results'].forEach((rest) => restaurants.add(new Restaurant.fromJson(rest)));
+  result['results'].forEach((rest) => restaurants.add(new Restaurant(rest)));
   value = result['results'][0]['name'];
 
   if (restaurants.isNotEmpty) {
