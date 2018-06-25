@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   double _lon, _lat;
   var url, request, response;
   String value, error;
-  Set<Restaurant> restaurants;
+  var restaurants = new Set();
 
   bool currentWidget = true;
 
@@ -98,7 +98,7 @@ fetchRestaurants(double _lat, double _lon) async {
 
   if (restaurants.isNotEmpty) {
     print("ALL RECOVERED RESTAURANTS");
-    restaurants.forEach((restaurant) => print(restaurant));
+    restaurants.forEach((restaurant) => print(restaurant.name));
   }
 
   return value;
