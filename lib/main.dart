@@ -91,8 +91,8 @@ fetchRestaurants(double _lat, double _lon) async {
 
   print(response.body);
   Map<String, dynamic> result = json.decode(response.body.toString());
-  Restaurant r = Restaurant.fromJson(result['results'][0]);
-  result['results'].forEach((rest) => restaurants.add(Restaurant.fromJson(rest)));
+  Restaurant r = new Restaurant.fromJson(result['results'][0]);
+  result['results'].forEach((rest) => restaurants.add(new Restaurant.fromJson(rest)));
   value = result['results'][0]['name'];
 
   if (restaurants.isNotEmpty) {
