@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
   double _lon, _lat;
   var url, request, response;
   String value, error;
+  Set<Restaurant> restaurants;
 
   bool currentWidget = true;
 
@@ -90,9 +91,14 @@ fetchRestaurants(double _lat, double _lon) async {
 
   print(response.body);
   Map<String, dynamic> result = json.decode(response.body.toString());
-  List<Restaurant> restaurants;
-  result['results'].forEach((rest) => restaurants.add(Restaurant.));
+  Restaurant r = Restaurant.fromJson(result['results'][0]);
+  result['results'].forEach((rest) => restaurants.add(Restaurant.fromJson(rest)));
   value = result['results'][0]['name'];
+
+  if (restaurants.isNotEmpty) {
+    print("ALL RECOVERED RESTAURANTS");
+    restaurants.forEach((restaurant) => print(restaurant));
+  }
 
   return value;
 }
