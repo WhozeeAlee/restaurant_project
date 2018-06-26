@@ -148,6 +148,7 @@ fetchRestaurants(double _lat, double _lon) async {
           ],
         )
       ),
+      //@source https://stackoverflow.com/questions/43720930/flutter-side-menu
             body: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
