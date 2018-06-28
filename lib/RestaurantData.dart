@@ -25,9 +25,6 @@ class RestaurantData extends StatefulWidget {
 
   Image image1;
 
-  @override
-  _RestaurantDataState createState() => new _RestaurantDataState();
-
   fetchRestaurants(double _lat, double _lon) async {
   url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${_lat},${_lon}&radius=500&type=restaurant&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
   print(url);
