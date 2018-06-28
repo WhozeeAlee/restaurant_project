@@ -7,6 +7,9 @@ import 'dart:convert';
 import 'package:location_test/Restaurant.dart';
 
 class RestaurantData extends StatefulWidget {
+  @override
+  _RestaurantDataState createState() => new _RestaurantDataState();
+  
   Map<String, double> _startLocation;
   Map<String, double> _currentLocation;
 
