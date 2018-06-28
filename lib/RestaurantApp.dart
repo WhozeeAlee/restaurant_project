@@ -21,16 +21,16 @@ class _RestaurantAppState extends State<RestaurantApp> {
     List<Widget> widgets;
 
     widgets = new List();
-    r.fetchRestaurants(r._lat, r._lon);
+    // r.fetchRestaurants(r._lat, r._lon);
 
-    widgets.add(new Center(
-        child: new Text(_startLocation != null
-            ? 'Start location: $_startLocation\n'
-            : 'Error: $error\n')));
-    widgets.add(new Center(
-        child: new Text(_currentLocation != null
-            ? 'City: $value\n'
-            : 'Error: $error\n')));
+    // widgets.add(new Center(
+    //     child: new Text(_startLocation != null
+    //         ? 'Start location: $_startLocation\n'
+    //         : 'Error: $error\n')));
+    // widgets.add(new Center(
+    //     child: new Text(_currentLocation != null
+    //         ? 'City: $value\n'
+    //         : 'Error: $error\n')));
     
     
 
@@ -66,4 +66,3 @@ class _RestaurantAppState extends State<RestaurantApp> {
               children: widgets,
             )));
   }
-}
