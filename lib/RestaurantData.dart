@@ -7,10 +7,6 @@ import 'dart:convert';
 import 'package:location_test/Restaurant.dart';
 
 class RestaurantData extends StatefulWidget {
-  @override
-  _RestaurantDataState createState() => new _RestaurantDataState();
-
-  
   Map<String, double> _startLocation;
   Map<String, double> _currentLocation;
 
@@ -26,7 +22,10 @@ class RestaurantData extends StatefulWidget {
 
   Image image1;
 
-fetchRestaurants(double _lat, double _lon) async {
+  @override
+  _RestaurantDataState createState() => new _RestaurantDataState();
+
+  fetchRestaurants(double _lat, double _lon) async {
   url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${_lat},${_lon}&radius=500&type=restaurant&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
   print(url);
   final response = await http.get(url);
@@ -48,7 +47,6 @@ fetchRestaurants(double _lat, double _lon) async {
 
 class _RestaurantDataState extends State<RestaurantData> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
-
 
   @override
   void initState() {
@@ -92,7 +90,6 @@ class _RestaurantDataState extends State<RestaurantData> {
     });
 
   }
-
 // fetchCity(double _lat, double _lon) async {
 //   url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${_lat},${_lon}&location_type=ROOFTOP&result_type=street_address&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
 //   print(url);
