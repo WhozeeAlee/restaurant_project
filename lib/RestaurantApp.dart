@@ -21,7 +21,7 @@ class _RestaurantAppState extends State<RestaurantApp> {
     List<Widget> widgets;
 
     widgets = new List();
-    r.fetchRestaurants(_lat, _lon);
+    r.fetchRestaurants(r._lat, r._lon);
 
     widgets.add(new Center(
         child: new Text(_startLocation != null
