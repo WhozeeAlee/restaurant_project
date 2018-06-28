@@ -9,7 +9,6 @@ import 'package:location_test/Restaurant.dart';
 class RestaurantData extends StatefulWidget {
   @override
   _RestaurantDataState createState() => new _RestaurantDataState();
-
   
   Map<String, double> _startLocation;
   Map<String, double> _currentLocation;
@@ -48,7 +47,6 @@ fetchRestaurants(double _lat, double _lon) async {
 
 class _RestaurantDataState extends State<RestaurantData> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
-
 
   @override
   void initState() {
